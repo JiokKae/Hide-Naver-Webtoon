@@ -1,0 +1,22 @@
+{
+    "name": "Hide Naver Webtoon",
+    "description": "Hide Naver webtoon",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "storage"
+    ],
+    "icons": {
+        "16": "/images/hnw16.png",
+        "32": "/images/hnw32.png",
+        "48": "/images/hnw48.png",
+        "128": "/images/hnw128.png"
+    },
+    "options_page": "options.html",
+    "content_scripts": [
+        {
+            "matches": ["https://comic.naver.com/webtoon/*"],
+            "js": ["content-script.js"]
+        }
+    ]
+}

@@ -48,7 +48,7 @@ class HideUI extends HTMLElement {
 	}
 
 	#saveTitleToHide() {
-		chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList }) => {
+		chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
 			chrome.storage.sync.set({
 				hideWebtoonList: hideWebtoonList + this.#webtoonTitle + ";",
 			});

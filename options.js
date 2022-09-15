@@ -1,6 +1,6 @@
 let textArea = document.getElementById("hideWebtoonList");
 
-chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList }) => {
+chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
 	textArea.value = hideWebtoonList;
 	console.log(hideWebtoonList);
 });

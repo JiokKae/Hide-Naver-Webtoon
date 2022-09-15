@@ -28,7 +28,7 @@ function hideWebtoonElement(name) {
 	});
 }
 
-chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList }) => {
+chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
 	const webtoons = hideWebtoonList
 		.replaceAll("\n", "")
 		.split(";")

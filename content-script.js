@@ -19,7 +19,7 @@ function appendHideUI() {
 	});
 }
 
-function hideWebtoon(name) {
+function hideWebtoonElement(name) {
 	var thumbs = document.querySelectorAll(
 		"li > div.thumb > a > img[title='" + name + "']"
 	);
@@ -33,8 +33,8 @@ chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList }) => {
 		.replaceAll("\n", "")
 		.split(";")
 		.filter((item) => item);
-	webtoons.forEach((element) => {
-		hideWebtoon(element);
+	webtoons.forEach((webtoonName) => {
+		hideWebtoonElement(webtoonName);
 	});
 	appendHideUI();
 });

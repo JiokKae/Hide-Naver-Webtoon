@@ -21,7 +21,7 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["/images/hide.png"],
+            "resources": ["/images/hide.png", "/images/toon-item-sample.png"],
             "matches": ["https://comic.naver.com/*"],
             "extension_ids": ["nnleeadcdkljjgjoaclofphnjdnaaiek"]
         }

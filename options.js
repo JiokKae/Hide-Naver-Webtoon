@@ -35,7 +35,7 @@ function setOption(key, value, inputElement) {
 }
 
 function getOption(key, event) {
-	chrome.storage.local.get("options", ({ options: { [key]: value } }) => {
+	chrome.storage.local.get("options", ({ options: { [key]: value } = {} }) => {
 		event(value);
 	});
 }

@@ -36,5 +36,13 @@ chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
 	webtoons.forEach((webtoonName) => {
 		hideWebtoonElement(webtoonName);
 	});
-	appendHideUI();
+	chrome.storage.local.get(
+		"options",
+		({ options: { hidesHideUI = false } = {} }) => {
+			if (hidesHideUI === true) {
+				return;
+			}
+			appendHideUI();
+		}
+	);
 });

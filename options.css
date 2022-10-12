@@ -1,4 +1,29 @@
-.textbox {
-  width: 100%;
-  height: 10rem;
+html {
+  font-size: large;
+}
+
+.ui {
+  z-index: 1000;
+  position: absolute;
+}
+.hide-image {
+  width: 24px;
+  border: 1px solid gray;
+  border-radius: 9px;
+  background: linear-gradient(312deg, #ebebeb, white);
+  opacity: 0.5;
+}
+.hide-image:hover {
+  opacity: 1;
+}
+
+dt {
+  margin-bottom: 5px;
+}
+
+#webtoon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
 }

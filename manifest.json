@@ -1,7 +1,7 @@
 {
     "name": "Hide Naver Webtoon",
     "description": "Hide Naver webtoon",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "manifest_version": 3,
     "permissions": [
         "storage"

@@ -20,3 +20,10 @@ html {
 dt {
   margin-bottom: 5px;
 }
+
+#webtoon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}

@@ -1,5 +1,18 @@
+let webtoonList = document.getElementById("webtoon-list");
 chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
 	console.log(hideWebtoonList);
+	const webtoonNames = hideWebtoonList
+		.replaceAll("\n", "")
+		.split(";")
+		.filter((item) => item)
+		.sort();
+	webtoonNames.forEach((webtoonName) => {
+		webtoonList.append(
+			html`<webtoon-list-item
+				webtoon-title="${webtoonName}"
+			></webtoon-list-item>`
+		);
+	});
 });
 
 

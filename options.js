@@ -34,15 +34,18 @@ function toggleHideUI({ target: { checked: hidesHideUI } }) {
 }
 
 function setOption(key, value, inputElement) {
-	chrome.storage.local.set({ "options": { [key]: value } }, () => {
+	chrome.storage.local.set({ options: { [key]: value } }, () => {
 		inputElement.disabled = false;
 	});
 }
 
 function getOption(key, event) {
-	chrome.storage.local.get("options", ({ options: { [key]: value } = {} }) => {
-		event(value);
-	});
+	chrome.storage.local.get(
+		"options",
+		({ options: { [key]: value } = {} }) => {
+			event(value);
+		}
+	);
 }
 
 function hideElement(element, b) {

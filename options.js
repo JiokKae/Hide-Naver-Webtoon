@@ -1,15 +1,20 @@
-let textArea = document.getElementById("hideWebtoonList");
-
+let webtoonList = document.getElementById("webtoon-list");
 chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
-	textArea.value = hideWebtoonList;
 	console.log(hideWebtoonList);
+	const webtoonNames = hideWebtoonList
+		.replaceAll("\n", "")
+		.split(";")
+		.filter((item) => item)
+		.sort();
+	webtoonNames.forEach((webtoonName) => {
+		webtoonList.append(
+			html`<webtoon-list-item
+				webtoon-title="${webtoonName}"
+			></webtoon-list-item>`
+		);
+	});
 });
 
-function updateHideWebtoonList(e) {
-	let hideWebtoonList = e.target.value;
-	chrome.storage.sync.set({ hideWebtoonList });
-}
-textArea.addEventListener("change", updateHideWebtoonList);
 
 const inputHideHideUI = document.getElementById("inputHideHideUI");
 const toonItemSample = document.getElementById("toon-item-sample");
@@ -29,15 +34,18 @@ function toggleHideUI({ target: { checked: hidesHideUI } }) {
 }
 
 function setOption(key, value, inputElement) {
-	chrome.storage.local.set({ "options": { [key]: value } }, () => {
+	chrome.storage.local.set({ options: { [key]: value } }, () => {
 		inputElement.disabled = false;
 	});
 }
 
 function getOption(key, event) {
-	chrome.storage.local.get("options", ({ options: { [key]: value } = {} }) => {
-		event(value);
-	});
+	chrome.storage.local.get(
+		"options",
+		({ options: { [key]: value } = {} }) => {
+			event(value);
+		}
+	);
 }
 
 function hideElement(element, b) {

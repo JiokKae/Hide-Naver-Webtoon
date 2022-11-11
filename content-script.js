@@ -3,8 +3,7 @@ function appendHideUI() {
 	thumbs.forEach((thumb) => {
 		thumb.parentElement.parentElement.parentElement.prepend(
 			html`<hide-ui
-				webtoon-title="${thumb.getAttribute("title")}"
-			></hide-ui>`
+				webtoon-title="${thumb.getAttribute("title")}"></hide-ui>`
 		);
 	});
 }

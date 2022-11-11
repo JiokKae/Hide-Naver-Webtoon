@@ -8,6 +8,27 @@ function appendHideUI() {
 	});
 }
 
+function appendFavoritesUI(favorites) {
+	var imgs = Array.from(
+		document.querySelectorAll("ul.img_list > li > div.thumb > a > img")
+	).reverse();
+
+	imgs.forEach((img) => {
+		var title = img.getAttribute("title");
+		var isFavorite = favorites.includes(title);
+		var thumb = img.parentElement.parentElement;
+		thumb.prepend(
+			html`<favorites-ui
+				webtoon-title="${title}"
+				${isFavorite ? "checked" : ""}></favorites-ui>`
+		);
+		if (isFavorite) {
+			var listItem = thumb.parentElement;
+			listItem.parentElement.prepend(listItem);
+		}
+	});
+}
+
 function hideWebtoonElement(name) {
 	var thumbs = document.querySelectorAll(
 		"li > div.thumb > a > img[title='" + name + "']"
@@ -17,21 +38,29 @@ function hideWebtoonElement(name) {
 	});
 }
 
-chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
-	const webtoons = hideWebtoonList
+function parseListString(string) {
+	return string
 		.replaceAll("\n", "")
 		.split(";")
 		.filter((item) => item);
-	webtoons.forEach((webtoonName) => {
-		hideWebtoonElement(webtoonName);
-	});
-	chrome.storage.local.get(
-		"options",
-		({ options: { hidesHideUI = false } = {} }) => {
-			if (hidesHideUI === true) {
-				return;
+}
+
+chrome.storage.sync.get(
+	["hideWebtoonList", "favoritesWebtoons"],
+	({ hideWebtoonList = "", favoritesWebtoons = "" }) => {
+		parseListString(hideWebtoonList).forEach((title) =>
+			hideWebtoonElement(title)
+		);
+
+		chrome.storage.local.get(
+			"options",
+			({ options: { hidesHideUI = false } = {} }) => {
+				if (hidesHideUI === true) {
+					return;
+				}
+				appendHideUI();
 			}
-			appendHideUI();
-		}
-	);
-});
+		);
+		appendFavoritesUI(parseListString(favoritesWebtoons));
+	}
+);

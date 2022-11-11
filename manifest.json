@@ -17,14 +17,20 @@
 			"js": [
 				"node_modules/@webcomponents/custom-elements/custom-elements.min.js",
 				"html-element.js",
+				"class/SyncDataManager.js",
 				"class/HideUI.js",
+				"class/FavoritesUI.js",
 				"content-script.js"
 			]
 		}
 	],
 	"web_accessible_resources": [
 		{
-			"resources": ["/images/hide.png", "/images/toon-item-sample.png"],
+			"resources": [
+				"/images/hide.png",
+				"/images/toon-item-sample.png",
+				"/images/stars.png"
+			],
 			"matches": ["https://comic.naver.com/*"],
 			"extension_ids": ["nnleeadcdkljjgjoaclofphnjdnaaiek"]
 		}

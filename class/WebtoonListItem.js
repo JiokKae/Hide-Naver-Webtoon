@@ -52,22 +52,8 @@ class WebtoonListItem extends HTMLElement {
 		) {
 			return;
 		}
-		this.#removeTitleFromList();
+		SyncDataManager.removeHideWebtoon(this.#webtoonTitle);
 		location.reload();
-	}
-
-	#removeTitleFromList() {
-		chrome.storage.sync.get(
-			"hideWebtoonList",
-			({ hideWebtoonList = "" }) => {
-				chrome.storage.sync.set({
-					hideWebtoonList: hideWebtoonList.replace(
-						this.#webtoonTitle + ";",
-						""
-					),
-				});
-			}
-		);
 	}
 }
 customElements.define("webtoon-list-item", WebtoonListItem);

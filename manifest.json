@@ -17,6 +17,7 @@
 			"js": [
 				"node_modules/@webcomponents/custom-elements/custom-elements.min.js",
 				"html-element.js",
+				"class/SyncDataManager.js",
 				"class/HideUI.js",
 				"content-script.js"
 			]

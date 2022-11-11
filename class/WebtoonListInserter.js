@@ -53,7 +53,7 @@ class WebtoonListInserter extends HTMLElement {
 				event.preventDefault();
 				return;
 			}
-			this.#insertTitleToList(value);
+			SyncDataManager.addHideWebtoon(value);
 		});
 	}
 
@@ -63,17 +63,6 @@ class WebtoonListInserter extends HTMLElement {
 
 	render() {
 		this.shadowRoot.append(this.#style, this.#content);
-	}
-
-	#insertTitleToList(webtoonTitle) {
-		chrome.storage.sync.get(
-			"hideWebtoonList",
-			({ hideWebtoonList = "" }) => {
-				chrome.storage.sync.set({
-					hideWebtoonList: hideWebtoonList + webtoonTitle + ";",
-				});
-			}
-		);
 	}
 }
 customElements.define("webtoon-list-inserter", WebtoonListInserter);

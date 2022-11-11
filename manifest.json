@@ -19,6 +19,7 @@
 				"html-element.js",
 				"class/SyncDataManager.js",
 				"class/HideUI.js",
+				"class/FavoritesUI.js",
 				"content-script.js"
 			]
 		}

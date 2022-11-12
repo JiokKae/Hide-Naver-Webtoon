@@ -4,8 +4,7 @@ class HideUI extends HTMLElement {
 		<img
 			class="hide-image"
 			src="${chrome.runtime.getURL("images/hide.png")}"
-			title="${this.#webtoonTitle} 숨기기"
-		/>
+			title="${this.#webtoonTitle} 숨기기" />
 	</div>`;
 	#style = html`<style>
 		.ui {
@@ -48,11 +47,14 @@ class HideUI extends HTMLElement {
 	}
 
 	#saveTitleToHide() {
-		chrome.storage.sync.get("hideWebtoonList", ({ hideWebtoonList = "" }) => {
-			chrome.storage.sync.set({
-				hideWebtoonList: hideWebtoonList + this.#webtoonTitle + ";",
-			});
-		});
+		chrome.storage.sync.get(
+			"hideWebtoonList",
+			({ hideWebtoonList = "" }) => {
+				chrome.storage.sync.set({
+					hideWebtoonList: hideWebtoonList + this.#webtoonTitle + ";",
+				});
+			}
+		);
 	}
 }
 customElements.define("hide-ui", HideUI);
